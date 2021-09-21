@@ -12,9 +12,8 @@ from poker_ai import utils
 from poker_ai.games.short_deck import state
 from poker_ai.ai.multiprocess.worker import Worker
 
-if __name__ == "__main__":
-    log = logging.getLogger("sync.server")
-    manager = mp.Manager()
+log = logging.getLogger("sync.server")
+manager = mp.Manager()
 
 
 class Server:

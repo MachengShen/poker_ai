@@ -5,8 +5,7 @@ from typing import Callable, Optional, Union
 
 import joblib
 
-if __name__ == "__main__":
-    manager = mp.Manager()
+manager = mp.Manager()
 
 
 class Agent:
