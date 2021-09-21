@@ -99,7 +99,7 @@ def train():
     default=0,
     help="Number of more iterations to train.",
 )
-def resume(server_config_path: str):
+def resume(server_config_path: str, n_more_iterations: int):
     """
     Continue training agent from config loaded from file.
 
@@ -110,7 +110,6 @@ def resume(server_config_path: str):
     server_config_path : str
         Path to server configurations.
     """
-    local_config: Dict[str, int] = {**locals()}
     try:
         config = joblib.load(server_config_path)
     except FileNotFoundError:
@@ -118,7 +117,7 @@ def resume(server_config_path: str):
             f"Server config file not found at the path: {server_config_path}\n "
             f"Please set the path to a valid file dumped by a previous session."
         )
-    config['n_iterations'] = config['start_timestep'] + local_config['n_more_iterations']
+    config['n_iterations'] = config['start_timestep'] + n_more_iterations
     server = Server.from_dict(config)
     _safe_search(server)
 
