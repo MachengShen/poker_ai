@@ -88,7 +88,7 @@ class Server:
         log.info(f"synchronising serialise_agent - {self._sync_serialise}")
         progress_bar_manager = enlighten.get_manager()
         progress_bar = progress_bar_manager.counter(
-            total=self._n_iterations, desc="Optimisation iterations", unit="iter"
+            total=self._n_iterations, desc="Optimisation iterations", unit="iter", position=start_timestep,
         )
         for t in range(self._start_timestep, self._n_iterations + 1):
             # Log any messages from the worker in this master process to avoid
