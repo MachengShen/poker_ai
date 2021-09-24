@@ -93,6 +93,8 @@ class Server:
         for t in range(self._start_timestep, self._n_iterations + 1):
             # Log any messages from the worker in this master process to avoid
             # weirdness with tqdm.
+            if t % 100 == 0:
+                log.info(f"current step: t = {t}")
             while not self._logging_queue.empty():
                 log.info(self._logging_queue.get())
             # Optimise for each player's position.
