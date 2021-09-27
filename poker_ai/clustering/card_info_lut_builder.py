@@ -42,6 +42,8 @@ class CardInfoLutBuilder(CardCombos):
         self.n_simulations_river = n_simulations_river
         self.n_simulations_turn = n_simulations_turn
         self.n_simulations_flop = n_simulations_flop
+        if not low_card_rank == 2:
+            log.info("Warning: Now we anticipate full deck, see preflop.py for reason")
         super().__init__(
             low_card_rank, high_card_rank,
         )
