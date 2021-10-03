@@ -2,6 +2,7 @@ import logging
 from typing import List
 from itertools import combinations
 import operator
+import joblib
 
 import numpy as np
 from tqdm import tqdm
@@ -31,14 +32,21 @@ class CardCombos:
             self.starting_hands, self.get_card_combos(3)
         )
         log.info("created flop")
+        tmp_file_name = f'flop_turn_river_{low_card_rank}_{high_card_rank}'
+        joblib.dump({'flop': self.flop}, tmp_file_name)
+        log.info("flop saved to the disk")
         self.turn = self.create_info_combos(
             self.starting_hands, self.get_card_combos(4)
         )
         log.info("created turn")
+        joblib.dump({'turn': self.flop}, tmp_file_name)
+        log.info("turn saved to the disk")
         self.river = self.create_info_combos(
             self.starting_hands, self.get_card_combos(5)
         )
         log.info("created river")
+        joblib.dump({'river': self.flop}, tmp_file_name)
+        log.info("river saved to the disk")
 
     def get_card_combos(self, num_cards: int) -> np.ndarray:
         """
